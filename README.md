@@ -29,10 +29,11 @@ Installation
    - Note: here you may want to alter the callback function that operates on each music file to also place a copy of each album's cover image into your COVER\_DIR directory. Each album will show "default.jpg" for its cover image unless it has a cover image file in COVER\_DIR.
 7. Execute bin/dancer.pl to start your dancer app (on port 3000 by default), and then point your browser to http://your-server:3000 to see the home page. Note that this a single-threaded process, and so I don't recommend running your app this way for general use; however, to just see that the application is working and has been populated with music, this will suffice.
 
-Afterward
-    - You can add and update album cover images (using URLs) by running util/album\_cover.pl at any time.
-    - Consider using the Perl Starman web server instead of running dancer.pl as a stand-alone application. See bin/restart.sh for my example.
-    - More options for and examples of Dancer deployment: http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod
+After installing:
+
+- You can add and update album cover images (using URLs) by running util/album\_cover.pl at any time.
+- Consider using the Perl Starman web server instead of running dancer.pl as a stand-alone application. See bin/restart.sh for my example.
+- More options for and examples of Dancer deployment: http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod
 
 
 Notes
