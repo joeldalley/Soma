@@ -1,0 +1,14 @@
+<script>
+    $(window).load(function() {
+        var somaCoverGrid = new SomaCoverGrid('JSON_URL'); 
+        somaCoverGrid.draw();
+
+        $(window).resize(function() {
+            somaCoverGrid.setGridSize();
+            somaCoverGrid.draw();
+        });
+    });
+
+    $('body').css('overflow', 'hidden');
+</script>
+<div id="grid"></div>

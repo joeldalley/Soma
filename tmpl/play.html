@@ -1,0 +1,36 @@
+<script>
+    var somaAudio;
+    $(document).ready(function() {
+        somaAudio = new SomaAudio('JSON_URL', RANDOMIZE);
+        somaAudio.setText();
+        somaAudio.coverSrc();
+    });
+    $(window).load(function() { 
+        somaAudio.audioSrc();
+        somaAudio.play();
+    });
+</script>
+<div id="play">
+  <div id="info">
+    <div class="title"><span id="title"></span></div>
+    <div class="artist"><i>by</i> <span id="artist"></span></div>
+    <div class="album"><i>on</i> <span id="album"></span></div>
+    <div id="time">
+      <div id="completed">00:00</div>
+      <div id="progress-container"><div id="progress"></div></div>
+      <div id="remaining">00:00</div>
+    </div>
+    <div style="clear:both"></div>
+    <div id="controls">
+      <div class="prev-next">
+        <a id="prev" href="javascript:somaAudio.prev()">prev</a>
+      </div>
+      <div id="play-pause">
+        <a href="javascript:somaAudio.playPause()">play</a>
+      </div>
+      <div class="prev-next">
+        <a id="next" href="javascript:somaAudio.next()">next</a>
+      </div>
+    </div>
+  </div>
+</div>

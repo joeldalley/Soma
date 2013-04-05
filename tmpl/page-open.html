@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Soma :: HEADING</title>
+    <link type="text/css" rel="stylesheet" href="/css/soma.css"/>
+    <link rel="shortcut icon" href="/favicon.png" type="image/icon"/>
+    <script src="/javascripts/jquery-1.9.1.min.js"></script>
+    <script src="/javascripts/somaUtil.js"></script>
+    <script src="/javascripts/SomaAudio.js"></script>
+    <script src="/javascripts/SomaCoverGrid.js"></script>
+  </head>
+  <body>
+    <div id="heading">
+      <div id="h1">HEADING</div>
+    </div>
+    <div id="nav">
+      <div class="nav-button"><a href="/">home</a></div>
+      <div class="nav-button">
+        <a href="/play/song/random">random</a>
+      </div>
+      <div id="search-input">
+        search <input id="query" type="text" value="QUERY" size="20"
+               onkeyup="urlOnEnter('/search/' + escape(this.value))"/>
+      </div>
+    </div>
