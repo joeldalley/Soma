@@ -101,6 +101,10 @@ sub forFile($) {
         die "Invalid file `$file`";
     }
 
+    #/ simplify track
+    $meta{'track'} =~ /^(\d+)/;
+    $meta{'track'} = $1 || undef;
+
     COMPLETE_DATA_REQUIRED: {
         my $size = scalar keys %meta;
         my @def = grep {defined $meta{$_}} keys %meta;

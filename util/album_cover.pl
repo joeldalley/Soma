@@ -21,7 +21,7 @@ die "No results `$query`" unless @results;
 my $num;
 if (@results > 1) {
     for (my $i = 0; $i < @results; $i++) { printResult($i) }
-    print "[all] all\n" if @results > 1;
+    print "[all] all\n";
     print "Enter number: ";
     chomp($num = <STDIN>);
 }

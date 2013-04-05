@@ -60,7 +60,9 @@ function SomaAudio(jsonUrl, randomize) {
     this.coverSrc = function() {
         var curr = this.songs[this.index];
         var imgUrl = 'url(/cover/' + curr.albumId + ')';
-        $('#play').css('background-image', imgUrl);
+        var currImgUrl = $('#play').css('background-image');
+        if (imgUrl != currImgUrl) 
+            $('#play').css('background-image', imgUrl);
     };
 
     this.audioSrc = function() {

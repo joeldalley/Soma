@@ -39,6 +39,7 @@ sub modalHtml($$) {
 #/ Internal use ////////////////////////////////////////////////
 
 #/ @param hashref    placeholder/value pairs
+#/ @return string    play page html
 sub _render($) {
     my $replace = shift;
     return render('page-open.html', $replace)

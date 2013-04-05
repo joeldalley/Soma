@@ -1,5 +1,5 @@
 
-#/ DbInterface is a simple DBI wrapper.
+#/ Db is a simple DBI wrapper.
 #/
 #/ Because of the use of "LIMIT", this package assumes your database
 #/ is something like MySQL or SQLite, which supports that clause.
@@ -29,12 +29,9 @@ sub iterator($$;$$$) {
     my ($table, $columns) = (shift, shift);
     my ($clauses, $values, $opts) = (shift || [], shift || [], shift || {});
 
-    #/ construct and execute the select query
     my $query = selectQuery($table, $columns, $clauses, $opts);
     my $sth = execute($query, $values);
 
-    #/ return a closure over the statement handler object 
-    #/ that returns the next result row when invoked
     sub {
         my $res = $sth->fetchrow_arrayref();
         $sth->finish() if not defined $res;
@@ -48,13 +45,8 @@ sub iterator($$;$$$) {
 #/ @return scalar    the number of rows matching the where clauses
 sub count($;$$) {
     my ($table, $clauses, $values) = (shift, shift || [], shift || []);
-
-    #/ select the count matching the given where clauses
     my $iter = getIterator($table, ['COUNT(*)'], $clauses, $values);
-    my $row = $iter->();
-
-    #/ return the count
-    int $row->[0];
+    int $iter->()->[0];
 }
 
 #/ @param scalar $table    A database table
@@ -142,7 +134,7 @@ sub deleteQuery($$) {
 
 
 #////////////////////////////////////////////////////
-#/ Implementation details ///////////////////////////
+#/ Internal use /////////////////////////////////////
 
 
 #/ @return object    a DBI::db

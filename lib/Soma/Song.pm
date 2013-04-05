@@ -25,21 +25,21 @@ sub toId($$) {
 }
 
 #/ @param string $file    a file name
-#/ @return int    TRUE if valid, or FALSE
+#/ @return int    1 if valid, or 0
 sub validFile($) {
     my $file = shift;
     isMp3($file) || isM4a($file);
 }
 
 #/ @param string $file    a file name
-#/ @return int    TRUE if mp3, or FALSE
+#/ @return int    1 if mp3, or 0
 sub isMp3($) {
     my $file = shift;
     $file && $file =~ /\.mp3$/o && 1 || 0;
 }
 
 #/ @param string $file    a file name
-#/ @return int    TRUE if m4a, or FALSE
+#/ @return int    1 if m4a, or 0
 sub isM4a($) {
     my $file = shift;
     $file && $file =~ /\.m4a$/o && 1 || 0;

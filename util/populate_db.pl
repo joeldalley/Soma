@@ -12,8 +12,8 @@ use stern;
 
 use File::Copy;
 use Soma::Capsule::Load;
-use Soma::DirWalk qw(song_walk);
-use Digest::MD5 qw(md5_hex);
+use Soma::DirWalk 'song_walk';
+use Digest::MD5 'md5_hex';
 
 #/ user input
 my $musicDir = shift || die "Usage: perl populate_db.pl <directory>";

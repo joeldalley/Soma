@@ -5,7 +5,7 @@ use stern;
 #/ @author Joel Dalley
 #/ @version 2013/Mar/22
 
-use Exporter;
+use Exporter 'import';
 our @EXPORT_OK = qw(song_walk);
 
 use Soma::Song;
