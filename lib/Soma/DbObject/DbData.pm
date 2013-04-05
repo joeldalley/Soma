@@ -1,6 +1,5 @@
 
-#/ Expresses database object column/value pairs as an object.
-#/ The reasons this is encapsulated, and not a bare hash are:
+#/ Expresses database (column name, value) pairs as an object.
 #/
 #/ Note 'use fields' can't be employed here since the 
 #/ fields an object may have aren't known at compile time.

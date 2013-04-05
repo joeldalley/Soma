@@ -9,7 +9,6 @@ package Soma::Album::Object;
 
 use Soma::Album;
 use Soma::Const;
-use Soma::String;
 use Soma::DbObject;
 
 
@@ -29,10 +28,6 @@ sub new {
 #/ @param object    a Soma::Album::Object
 #/ @return int    album's id
 sub id { Soma::DbObject::id(shift) }
-
-#/ @param object    a Soma::Album::Object
-#/ @return string    the album subdir
-sub subdir { Soma::String::flatten(shift->field('name')) }
 
 #/ @param object    a Soma::Album::Object
 #/ @return string    cover art image file name

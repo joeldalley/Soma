@@ -8,7 +8,6 @@ use stern;
 package Soma::Artist::Object; 
 
 use Soma::Const;
-use Soma::String;
 use Soma::Artist;
 use Soma::DbObject;
 
@@ -29,10 +28,6 @@ sub new {
 #/ @param object    a Soma::Artist::Object
 #/ @return int    artist's id
 sub id { Soma::DbObject::id(shift) }
-
-#/ @param object    a Soma::Artist::Object
-#/ @return string    the artist subdir
-sub subdir { Soma::String::flatten(shift->field('name')) }
 
 #/ @param object    a Soma::Artist::Object
 #/ @param string    artist's data field name

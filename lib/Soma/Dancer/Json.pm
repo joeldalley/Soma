@@ -45,33 +45,34 @@ sub search($) {
 #/ @return string    JSON data
 sub modal($$) {
     my ($mode, $id) = @_;
-    return forArtistId($id) if $mode eq 'artist';
-    return forAlbumId($id) if $mode eq 'album';
-    return forSongId($id) if $mode eq 'song';
+    return _forArtistId($id) if $mode eq 'artist';
+    return _forAlbumId($id) if $mode eq 'album';
+    return _forSongId($id) if $mode eq 'song';
     die "Invalid mode `$mode`";
 }
 
+
+#//////////////////////////////////////////////////////////////
+#/ Internal use ///////////////////////////////////////////////
+
 #/ @param string    an artist id
 #/ @return string    JSON data for all songs by artist
-sub forArtistId($) {
+sub _forArtistId($) {
     my @data = _artist(shift);
     encode_json(\@data);
 }
 
 #/ @param string   an album id
 #/ @return string    JSON data for all songs on album
-sub forAlbumId($) {
+sub _forAlbumId($) {
     my @data = _album(shift);
     encode_json(\@data);
 }
 
 #/ @param string    a song id
 #/ @return string    JSON data for one song
-sub forSongId($) { encode_json([_song(shift)]) }
+sub _forSongId($) { encode_json([_song(shift)]) }
 
-
-#//////////////////////////////////////////////////////////////
-#/ Internal use ///////////////////////////////////////////////
 
 #/ @param string    an artist id
 #/ @return array    array of capsule data hashrefs
