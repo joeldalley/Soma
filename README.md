@@ -9,10 +9,9 @@ Soma is copyright (c) 2013 Joel Dalley. Soma is distributed under the same licen
 Overview
 ========
 
-Video
-    Here is a video overview of its features, and a few comments on installing the application:
+Here is a video overview of its features, and a few comments on installing the application:
 
-    http://youtu.be/pI6cWmg2wx4
+http://www.youtube.com/watch?v=pI6cWmg2wx4
 
 
 Installation
