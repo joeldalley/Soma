@@ -58,64 +58,8 @@ sub forSong($) {
 #/ @return object    a Soma::Capsule
 sub forFile($) {
     my $file = shift;
-    die "No such file `$file`" unless -e $file;
-
-    my %meta;
-    switch: {
-        require Soma::Song;
-
-        Soma::Song::isMp3($file) and do {
-            require MP3::Tag;
-            my $mp3 = MP3::Tag->new($file);
-            my $secs = $mp3->total_secs() || 0;
-            my @info = $mp3->autoinfo();
-
-            $meta{'title'} = $info[0];
-            $meta{'track'} = $info[1];
-            $meta{'artist'} = $info[2];
-            $meta{'album'} = $info[3];
-            $meta{'year'} = $info[5];
-            $meta{'genre'} = $info[6];
-            $meta{'duration'} = int($secs + .5);
-
-            last switch;
-        };
-
-        Soma::Song::isM4a($file) and do {
-            require MP4::Info;
-            my $tag = MP4::Info::get_mp4tag($file);
-            my $mins = $tag->{'MM'} || 0;
-            my $secs = $tag->{'SS'} || 0;
-
-            $meta{'title'} = $tag->{'NAM'};
-            $meta{'track'} = $tag->{'TRKN'}[0];
-            $meta{'artist'} = $tag->{'ART'};
-            $meta{'album'} = $tag->{'ALB'};
-            $meta{'year'} = $tag->{'DAY'};
-            $meta{'genre'} = $tag->{'GNRE'};
-            $meta{'duration'} = int($mins*60 + $secs);
-
-            last switch;
-        };
-
-        die "Invalid file `$file`";
-    }
-
-    #/ simplify track
-    $meta{'track'} =~ /^(\d+)/;
-    $meta{'track'} = $1 || undef;
-
-    COMPLETE_DATA_REQUIRED: {
-        my $size = scalar keys %meta;
-        my @def = grep {defined $meta{$_}} keys %meta;
-        my $max = Soma::Const::Song::MAX_FILEPATH;
-
-        die "No duration `$file`" if !$meta{'duration'};
-        die "Track NaN `$file`" if $meta{'track'} !~ /^\d+$/;
-        die "File path too long `$file`" if length $file > $max;
-        die "At least one undef meta datum `$file`" if @def < $size;
-    }
-
+    require Soma::Song::Meta;
+    my %meta = Soma::Song::Meta::forFile($file);
     forSong(_metaToSong($file, %meta));
 }
 

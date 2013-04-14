@@ -1,9 +1,10 @@
-use stern;
-
 #/ Wrapper for File::DirWalk.
 #/
 #/ @author Joel Dalley
 #/ @version 2013/Mar/22
+
+use stern;
+package Soma::DirWalk;
 
 use Exporter 'import';
 our @EXPORT_OK = qw(song_walk);

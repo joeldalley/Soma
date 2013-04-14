@@ -1,5 +1,7 @@
 
-#/ Soma Dancer template object.
+#/ Provides render(), which takes a template file and its
+#/ (placeholder, value) pairs, and renders the template.
+#/ 
 #/ @author Joel Dalley
 #/ @version 2013/Mar/29
 
