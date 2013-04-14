@@ -19,7 +19,7 @@ Installation
 
 0. Choose a location for Soma; in my example, I use /home/joel/soma.
 1. Add a PERL5LIB path to your shell environment: for example, in my .bashrc file, I have this:
-       export PERL5LIB="/home/joel/soma/lib"
+ - export PERL5LIB="/home/joel/soma/lib"
 2. Set the value of Soma::Const::SOMA\_DIR in lib/Soma/Const.pm to match the Soma location from step (0).
 3. Choose a cover art image directory: in my example, I use /usr/local/media/music/.art. Update the value of Soma::Const::Album::COVER\_DIR in lib/Soma/Const.pm to this directory, and copy res/default.jpg into this directory.
 4. Test your environment by executing test/compile\_check.pl, which will fail and inform you why if, for instance, you're missing a required Perl package. Using a package manager or a cpan program, add all of the required packages and their dependencies. I prefer cpanm for this.
