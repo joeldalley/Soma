@@ -23,7 +23,7 @@ sub search($) {
                 . 'album.name LIKE ? OR '
                 . 'artist.name LIKE ?';
     my @values = map "%$query%", (1..3);
-    my $opts = {order => 'artist.name,album.name,track'};
+    my $opts = {order => 'album.name,track,artist.name'};
     _iter([$clauses], \@values, $opts);
 }
 
