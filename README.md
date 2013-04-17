@@ -21,19 +21,19 @@ Requirements
 
 Soma assumes that, whatever operating system you use, you have access to a UNIX-like shell, with directories separated by "/" and commands like "ls".
 
-*Database*
-SQLite.
+**Database**<br/>
+SQLite
 
-*Perl*<br/>
+**Perl**<br/>
 [Dancer](http://www.perldancer.org/)<br/>
 [DBI](http://search.cpan.org/dist/DBI/DBI.pm)<br/>
 [LWP::Simple](http://search.cpan.org/~gaas/libwww-perl-6.05/lib/LWP/Simple.pm)<br/>
 [Digest::MD5](http://search.cpan.org/~gaas/Digest-MD5-2.52/MD5.pm)<br/>
 
-*Recommended Perl*<br/>
+**Recommended Perl**<br/>
 [Starman Web Server](http://search.cpan.org/~miyagawa/Starman-0.1000/lib/Starman.pm)
 
-*Misc*<br/>
+**Misc**<br/>
 In order to use the import files utiltiy, you will need `avconv`.
 
 Strictly speaking, Perl Dancer isn't required. You could use Soma as an Apache CGI script, for example, but I don't recommend doing that.
@@ -58,7 +58,7 @@ And then execute these shell commands:
 
 ```
 echo 'export PERL5LIB="/home/user/soma/lib" >> ~/.bashrc
-cp ~/soma/res/default.jpg ~/soma/covers
+mkdir ~/soma/covers && cp ~/soma/res/default.jpg ~/soma/covers
 cd ~/soma/test && perl compile_check.pl
 cd ~/soma/db && sh ./replace.sh
 cd ~/soma/util && perl populate_db.pl /path/to/your/music/files
