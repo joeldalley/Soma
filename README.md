@@ -3,7 +3,9 @@ Soma
 
 Soma is a very simple HTML5 music player.
 
-Soma is copyright (c) 2013 Joel Dalley. Soma is distributed under the same license as Perl itself. For more details, see the full text of the license in the file LICENSE.
+Soma is copyright &copy; 2013 Joel Dalley.<br/>
+Soma is distributed under the same license as Perl itself.<br/>
+For more details, see the full text of the license in the file LICENSE.
 
 
 Overview
@@ -14,26 +16,59 @@ Here is a video overview of its features, and a few comments on installing the a
 http://www.youtube.com/watch?v=pI6cWmg2wx4
 
 
+Requirements
+============
+
+Soma assumes that, whatever operating system you use, you have access to a UNIX-like shell, with directories separated by "/" and commands like "ls".
+
+*Database*
+SQLite.
+
+*Perl*<br/>
+[Dancer](http://www.perldancer.org/)<br/>
+[DBI](http://search.cpan.org/dist/DBI/DBI.pm)<br/>
+[LWP::Simple](http://search.cpan.org/~gaas/libwww-perl-6.05/lib/LWP/Simple.pm)<br/>
+[Digest::MD5](http://search.cpan.org/~gaas/Digest-MD5-2.52/MD5.pm)<br/>
+
+*Recommended Perl*<br/>
+[Starman Web Server](http://search.cpan.org/~miyagawa/Starman-0.1000/lib/Starman.pm)
+
+*Misc*<br/>
+In order to use the import files utiltiy, you will need `avconv`.
+
+Strictly speaking, Perl Dancer isn't required. You could use Soma as an Apache CGI script, for example, but I don't recommend doing that.
+
+
 Installation
 ============
 
-0. Choose a location for Soma; in my example, I use /home/joel/soma.
-1. Add a PERL5LIB path to your shell environment: for example, in my .bashrc file, I have this:
- - export PERL5LIB="/home/joel/soma/lib"
-2. Set the value of Soma::Const::SOMA\_DIR in lib/Soma/Const.pm to match the Soma location from step (0).
-3. Choose a cover art image directory: in my example, I use /usr/local/media/music/.art. Update the value of Soma::Const::Album::COVER\_DIR in lib/Soma/Const.pm to this directory, and copy res/default.jpg into this directory.
-4. Test your environment by executing test/compile\_check.pl, which will fail and inform you why if, for instance, you're missing a required Perl package. Using a package manager or a cpan program, add all of the required packages and their dependencies. I prefer cpanm for this.
-5. Execute db/replace.sh, to create an empty SQLite database in the file, soma.db.
-6. Execute util/populate\_db.pl, giving it file path argument to where your music files are. Currently only mp3 and m4a files are recognized by Soma.
-   - Note: here you may want to alter the callback function that operates on each music file to also place a copy of each album's cover image into your COVER\_DIR directory. Each album will show "default.jpg" for its cover image unless it has a cover image file in COVER\_DIR.
-7. Execute bin/dancer.pl to start your dancer app (on port 3000 by default), and then point your browser to http://your-server:3000 to see the home page. Note that this a single-threaded process, and so I don't recommend running your app this way for general use; however, to just see that the application is working and has been populated with music, this will suffice.
+Assuming your Soma directory is `/home/user/soma`, update the values of the following in `~/soma/lib/Soma/Const.pm`:
 
-After installing:
+```perl
+package Soma::Const;
+sub SOMA_DIR { '/home/user/soma' }
 
-- You can add and update album cover images (using URLs) by running util/album\_cover.pl at any time.
-- Consider using the Perl Starman web server instead of running dancer.pl as a stand-alone application. See bin/restart.sh for my example.
-- More options for and examples of Dancer deployment: http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod
+...
 
+package Soma::Const::Album;
+sub COVER_DIR { '/home/user/soma/covers' }
+```
+
+And then execute these shell commands:
+
+```
+echo 'export PERL5LIB="/home/user/soma/lib" >> ~/.bashrc
+cp ~/soma/res/default.jpg ~/soma/covers
+cd ~/soma/test && perl compile_check.pl
+cd ~/soma/db && sh ./replace.sh
+cd ~/soma/util && perl populate_db.pl /path/to/your/music/files
+cd ~/soma/bin && perl dancer.pl
+```
+
+The first is so Soma libraries will be found. The second installs the default album cover image into your album covers directory. The third makes sure you've got all the required software installed. The forth creates an empty SQLite database for Soma. The fifth imports your music files into the Soma database. And the sixth starts Soma as a Dancer app on port 3000.
+
+[I deploy my app using the Perl Starman web server](https://github.com/joeldalley/Soma/blob/master/bin/restart.sh).<br/>
+[More Perl Dancer deployment options](http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod).
 
 Notes
 =====
