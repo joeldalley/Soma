@@ -8,7 +8,6 @@ package Soma::Dancer::Home;
 
 use Soma::Const;
 use Soma::Dancer::Template 'render';
-use Soma::Album::Iterator;
 
 
 #///////////////////////////////////////////////////////////////
