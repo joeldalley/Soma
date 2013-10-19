@@ -8,42 +8,22 @@ use stern;
 use File::DirWalk;
 use Soma::Const;
 
-my $dir = Soma::Const::SOMA_DIR;
-my $log = $dir . '/test/.compile.log';
-
-#/ clear from last time
-unlink $log;
+my $lib_dir = Soma::Const::SOMA_DIR . '/lib';
 
 #/ check files
-my $walker = File::DirWalk->new();
-$walker->onFile(\&callback);
-$walker->walk($dir);
+my $walker = File::DirWalk->new;
 
-#/ analyze log
-open F, '<', $log or die $!; my @log = <F>; close F;
-for (@log) { die "ERROR: $_" if $_ !~ /syntax OK$/ }
-print $_ for (join '', @log, "\nSUCCESS\n");
-
-
-exit;
-
-
-#/ @param string $file    file path
-#/ @return int    File::DirWalk::SUCCESS
-sub callback {
+$walker->onFile(sub {
     my $file = shift;
-
     if (is_perl($file)) {
-        #/ split into relative dir, file
-        die "Relative dir not clear `$file`"
-            unless $file =~ m{($dir/\w+)/(.*)$};
-
-        #/ compile file, log result
-        system "cd $1 && perl -c $2 >> $log 2>&1";
+        my $res = `perl -I$lib_dir -c $file 2>&1`;
+        die $res unless $res =~ /syntax OK$/o;
     }
-
     File::DirWalk::SUCCESS;
-}
+});
+
+$walker->walk(Soma::Const::SOMA_DIR);
+
 
 #/ @param string $file    file path
 #/ @return int    1 for true, or 0 for false
