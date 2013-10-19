@@ -57,7 +57,6 @@ sub COVER_DIR { '/home/user/soma/covers' }
 And then execute these shell commands:
 
 ```
-echo 'export PERL5LIB="/home/user/soma/lib"' >> ~/.bashrc
 mkdir ~/soma/covers && cp ~/soma/res/default.jpg ~/soma/covers
 cd ~/soma/test && perl compile_check.pl
 cd ~/soma/db && sh ./replace.sh
