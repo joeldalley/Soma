@@ -1,11 +1,14 @@
+use stern;
 
 #/ Project constants.
 #/
 #/ @author Joel Dalley
 #/ @version 2013/Mar/21
 
+use context;
+
 package Soma::Const;
-sub SOMA_DIR  { '/home/joel/soma' }
+sub SOMA_DIR  { context::PROJ_DIR }
 sub DB_FILE { SOMA_DIR . '/db/soma.db' }
 sub DSN { 'DBI:SQLite2:' . DB_FILE }
 

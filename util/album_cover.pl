@@ -1,4 +1,5 @@
 use stern;
+use context;
 
 #/ Add or replace an album cover.
 #/ @author Joel Dalley

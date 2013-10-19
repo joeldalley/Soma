@@ -1,4 +1,5 @@
 use stern;
+use context;
 
 #/ Populates soma.db with any detected music files contained
 #/ within the given directory. 

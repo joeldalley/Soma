@@ -1,4 +1,5 @@
 use stern;
+use context;
 
 #/ Removes song(s) matching a query from the soma.db database.
 #/
