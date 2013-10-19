@@ -64,7 +64,7 @@ cd ~/soma/util && perl populate_db.pl /path/to/your/music/files
 cd ~/soma/bin && perl dancer.pl
 ```
 
-The first is so Soma libraries will be found. The second installs the default album cover image into your album covers directory. The third makes sure you've got all the required software installed. The forth creates an empty SQLite database for Soma. The fifth imports your music files into the Soma database. And the sixth starts Soma as a Dancer app on port 3000.
+The first installs the default album cover image into your album covers directory. The second makes sure you've got all the required software installed. The third creates an empty SQLite database for Soma. The fourth imports your music files into the Soma database. And the fifth starts Soma as a Dancer app on port 3000.
 
 [I deploy my app using the Perl Starman web server](https://github.com/joeldalley/Soma/blob/master/bin/restart.sh).<br/>
 [More Perl Dancer deployment options](http://search.cpan.org/dist/Dancer/lib/Dancer/Deployment.pod).
