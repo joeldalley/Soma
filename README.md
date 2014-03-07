@@ -8,14 +8,6 @@ Soma is distributed under the same license as Perl itself.<br/>
 For more details, see the full text of the license in the file LICENSE.
 
 
-Overview
-========
-
-Here is a video overview of its features, and a few comments on installing the application:
-
-http://www.youtube.com/watch?v=pI6cWmg2wx4
-
-
 Requirements
 ============
 
